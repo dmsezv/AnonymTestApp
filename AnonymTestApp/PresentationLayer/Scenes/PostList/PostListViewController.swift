@@ -55,6 +55,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         )
         refreshControl.layer.zPosition = -1
         refreshControl.tintColor = UIColor.darkGray
+        refreshControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
 
         return refreshControl
     }()
@@ -88,6 +89,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         tableView.estimatedRowHeight = estimatedRowHeight
         tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
         tableView.backgroundView = activityIndicator
+        tableView.refreshControl = refreshControl
 
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
@@ -111,7 +113,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         super.viewDidLoad()
 
         setupView()
-        interactor?.getPostList()
+        getPostList()
     }
 
     private func setupView() {
@@ -219,5 +221,14 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.configure(with: post)
 
         return cell
+    }
+}
+
+// MARK: - Events
+
+extension PostListViewController {
+    @objc private func refreshTable() {
+        updateTableView()
+        getPostList()
     }
 }
