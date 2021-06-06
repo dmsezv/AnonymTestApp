@@ -8,7 +8,7 @@
 import Foundation
 
 protocol CoreAssemblyProtocol {
-    
+
 }
 
 class CoreAssembly: CoreAssemblyProtocol {

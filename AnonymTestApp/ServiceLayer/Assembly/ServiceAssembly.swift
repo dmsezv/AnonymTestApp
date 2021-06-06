@@ -17,5 +17,5 @@ class ServiceAssembly: ServiceAssemblyProtocol {
     init(coreAssembly: CoreAssemblyProtocol) {
         self.coreAssembly = coreAssembly
     }
-    
+
 }
