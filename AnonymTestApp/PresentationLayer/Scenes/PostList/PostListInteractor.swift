@@ -26,7 +26,6 @@ class PostListInteractor: PostListBusinessLogic, PostListDataStore {
     // MARK: Do something
 
     func doSomething(request: PostList.Request) {
-        let response = PostList.Response()
-        presenter?.presentSomething(response: response)
+
     }
 }

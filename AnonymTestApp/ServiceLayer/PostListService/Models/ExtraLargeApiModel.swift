@@ -1,5 +1,5 @@
 //
-//  ExtraLargeModel.swift
+//  ExtraLargeApiModel.swift
 //  AnonymTestApp
 //
 //  Created by Dmitrii Zverev on 06.06.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ExtraLargeModel: Codable {
+struct ExtraLargeApiModel: Codable {
     var url: String?
-    var size: SizeModel?
+    var size: SizeApiModel?
 }

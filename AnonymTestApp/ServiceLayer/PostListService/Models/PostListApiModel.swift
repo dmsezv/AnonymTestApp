@@ -1,5 +1,5 @@
 //
-//  PostListModel.swift
+//  PostListApiModel.swift
 //  AnonymTestApp
 //
 //  Created by Dmitrii Zverev on 06.06.2021.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PostListModel: Codable {
-    var items: [PostModel]?
+struct PostListApiModel: Codable {
+    var items: [PostApiModel]?
     var cursor: String?
 }

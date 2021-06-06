@@ -17,7 +17,6 @@ class PostListPresenter: PostListPresentationLogic {
     // MARK: Do something
 
     func presentSomething(response: PostList.Response) {
-        let viewModel = PostList.ViewModel()
-        viewController?.displaySomething(viewModel: viewModel)
+
     }
 }

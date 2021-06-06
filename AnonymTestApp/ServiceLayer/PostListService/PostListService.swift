@@ -12,7 +12,7 @@ protocol PostListServiceProtocol {
 }
 
 class PostListService: PostListServiceProtocol {
-    typealias PostListResult = Result<PostListModel?, Error>
+    typealias PostListResult = Result<PostListApiModel?, Error>
     private let apiManager: ApiManagerProtocol
 
     init(apiManager: ApiManagerProtocol) {
