@@ -10,7 +10,7 @@ import Foundation
 protocol ApiManagerProtocol {
     func call<T: Codable>(endpoint: ApiEndpointItemProtocol,
                           parameters: [String: Any]?,
-                          complete: @escaping(Result<T, Error>) -> Void)
+                          complete: @escaping(Result<T?, Error>) -> Void)
 }
 
 enum ApiManagerError: Error {
@@ -25,7 +25,7 @@ class ApiManager: ApiManagerProtocol, NetworkEnvironmentProtocol {
 
     func call<T: Codable>(endpoint: ApiEndpointItemProtocol,
                           parameters: [String: Any]?,
-                          complete: @escaping(Result<T, Error>) -> Void) {
+                          complete: @escaping(Result<T?, Error>) -> Void) {
         guard let url = endpoint.url else {
             complete(.failure(ApiManagerError.badUrl))
             return
@@ -42,12 +42,12 @@ class ApiManager: ApiManagerProtocol, NetworkEnvironmentProtocol {
                     complete(.failure(ApiManagerError.dataNil))
                     return
                 }
-                guard let dataModel = try? JSONDecoder().decode(T.self, from: data) else {
+                guard let dataModel = try? JSONDecoder().decode(APIResponse<T>.self, from: data) else {
                     complete(.failure(ApiManagerError.jsonError))
                     return
                 }
 
-                complete(.success(dataModel))
+                complete(.success(dataModel.data))
             }
         }
 
