@@ -12,7 +12,7 @@ protocol ApiEndpointItemProtocol {
     var path: String { get }
     var httpMethod: String { get }
     var headers: [String: Any]? { get }
-    var url: URL { get }
+    var url: URL? { get }
     var version: String { get }
 
 }
@@ -49,9 +49,9 @@ extension ApiEndpointItem: ApiEndpointItemProtocol {
         }
     }
 
-    var url: URL {
+    var url: URL? {
         switch self {
-        default: break
+        default: return URL(string: baseUrl + path)
         }
     }
 

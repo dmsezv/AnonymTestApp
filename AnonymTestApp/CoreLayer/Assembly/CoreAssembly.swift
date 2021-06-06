@@ -8,9 +8,11 @@
 import Foundation
 
 protocol CoreAssemblyProtocol {
-
+    func apiManager() -> ApiManagerProtocol
 }
 
 class CoreAssembly: CoreAssemblyProtocol {
-
+    func apiManager() -> ApiManagerProtocol {
+        ApiManager.shared
+    }
 }
