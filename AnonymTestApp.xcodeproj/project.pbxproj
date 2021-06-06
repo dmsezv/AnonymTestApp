@@ -168,14 +168,14 @@
 			path = Resourses;
 			sourceTree = "<group>";
 		};
-		4D768A88266D35420019279B /* ApplicationConfigure */ = {
+		4D768A88266D35420019279B /* ApplicationSetup */ = {
 			isa = PBXGroup;
 			children = (
 				4DAF31A8266D32F700E492E2 /* AppDelegate.swift */,
 				4DAF31AA266D32F700E492E2 /* SceneDelegate.swift */,
 				4D768A8E266D36300019279B /* ApplicationAssembly.swift */,
 			);
-			path = ApplicationConfigure;
+			path = ApplicationSetup;
 			sourceTree = "<group>";
 		};
 		4D768A89266D35730019279B /* Storyboards */ = {
@@ -233,7 +233,7 @@
 				4D768A86266D35100019279B /* PresentationLayer */,
 				4D768A85266D350A0019279B /* ServiceLayer */,
 				4D768A84266D35000019279B /* CoreLayer */,
-				4D768A88266D35420019279B /* ApplicationConfigure */,
+				4D768A88266D35420019279B /* ApplicationSetup */,
 				4D768A87266D351B0019279B /* Resourses */,
 				4DAF31B6266D32FA00E492E2 /* Info.plist */,
 			);
