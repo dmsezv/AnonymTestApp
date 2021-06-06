@@ -31,14 +31,13 @@
 		4D6A5A68266D5181003F7CB8 /* PostListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A62266D5181003F7CB8 /* PostListModels.swift */; };
 		4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */; };
 		4D6A5A6A266D5181003F7CB8 /* PostListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */; };
+		4D6A5A6D266D5C74003F7CB8 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */; };
 		4D768A8F266D36300019279B /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A8E266D36300019279B /* ApplicationAssembly.swift */; };
 		4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A90266D36480019279B /* PresentationAssembly.swift */; };
 		4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A92266D36630019279B /* ServiceAssembly.swift */; };
 		4D768A95266D36780019279B /* CoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A94266D36780019279B /* CoreAssembly.swift */; };
 		4DAF31A9266D32F700E492E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF31A8266D32F700E492E2 /* AppDelegate.swift */; };
 		4DAF31AB266D32F700E492E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF31AA266D32F700E492E2 /* SceneDelegate.swift */; };
-		4DAF31AD266D32F700E492E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DAF31AC266D32F700E492E2 /* ViewController.swift */; };
-		4DAF31B0266D32F700E492E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF31AE266D32F700E492E2 /* Main.storyboard */; };
 		4DAF31B2266D32FA00E492E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF31B1266D32FA00E492E2 /* Assets.xcassets */; };
 		4DAF31B5266D32FA00E492E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4DAF31B3266D32FA00E492E2 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -68,6 +67,7 @@
 		4D6A5A62266D5181003F7CB8 /* PostListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListModels.swift; sourceTree = "<group>"; };
 		4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListInteractor.swift; sourceTree = "<group>"; };
+		4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
 		4D768A8E266D36300019279B /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		4D768A90266D36480019279B /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		4D768A92266D36630019279B /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
@@ -75,8 +75,6 @@
 		4DAF31A5266D32F700E492E2 /* AnonymTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnonymTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DAF31A8266D32F700E492E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4DAF31AA266D32F700E492E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4DAF31AC266D32F700E492E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4DAF31AF266D32F700E492E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4DAF31B1266D32FA00E492E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4DAF31B4266D32FA00E492E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4DAF31B6266D32FA00E492E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +151,7 @@
 		4D6A5A5E266D5169003F7CB8 /* PostList */ = {
 			isa = PBXGroup;
 			children = (
+				4D6A5A6B266D5C55003F7CB8 /* Cells */,
 				4D6A5A5F266D5181003F7CB8 /* PostListPresenter.swift */,
 				4D6A5A61266D5181003F7CB8 /* PostListRouter.swift */,
 				4D6A5A62266D5181003F7CB8 /* PostListModels.swift */,
@@ -160,6 +159,14 @@
 				4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */,
 			);
 			path = PostList;
+			sourceTree = "<group>";
+		};
+		4D6A5A6B266D5C55003F7CB8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		4D768A84266D35000019279B /* CoreLayer */ = {
@@ -185,7 +192,6 @@
 			children = (
 				4D768A8B266D35930019279B /* Assembly */,
 				4D6A5A5D266D5161003F7CB8 /* Scenes */,
-				4DAF31AC266D32F700E492E2 /* ViewController.swift */,
 				4D768A89266D35730019279B /* Storyboards */,
 			);
 			path = PresentationLayer;
@@ -212,7 +218,6 @@
 		4D768A89266D35730019279B /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				4DAF31AE266D32F700E492E2 /* Main.storyboard */,
 				4DAF31B3266D32FA00E492E2 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -331,7 +336,6 @@
 			files = (
 				4DAF31B5266D32FA00E492E2 /* LaunchScreen.storyboard in Resources */,
 				4DAF31B2266D32FA00E492E2 /* Assets.xcassets in Resources */,
-				4DAF31B0266D32F700E492E2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +370,6 @@
 				4D6A5A40266D4B0B003F7CB8 /* PostListModel.swift in Sources */,
 				4D6A5A48266D4CD2003F7CB8 /* ContentDataModel.swift in Sources */,
 				4D6A5A5A266D4E83003F7CB8 /* CommentsModel.swift in Sources */,
-				4DAF31AD266D32F700E492E2 /* ViewController.swift in Sources */,
 				4D6A5A42266D4B34003F7CB8 /* PostModel.swift in Sources */,
 				4D6A5A35266D4282003F7CB8 /* ApiManager.swift in Sources */,
 				4D6A5A37266D48BC003F7CB8 /* PostListService.swift in Sources */,
@@ -377,6 +380,7 @@
 				4D6A5A44266D4C37003F7CB8 /* PostTypeModel.swift in Sources */,
 				4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */,
 				4D6A5A52266D4DB6003F7CB8 /* AuthorModel.swift in Sources */,
+				4D6A5A6D266D5C74003F7CB8 /* PostListCell.swift in Sources */,
 				4D6A5A56266D4E18003F7CB8 /* PhotoDataModel.swift in Sources */,
 				4D6A5A6A266D5181003F7CB8 /* PostListInteractor.swift in Sources */,
 				4D6A5A46266D4C98003F7CB8 /* ContentModel.swift in Sources */,
@@ -399,14 +403,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4DAF31AE266D32F700E492E2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4DAF31AF266D32F700E492E2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4DAF31B3266D32FA00E492E2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -549,7 +545,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dmsezv.AnonymTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -568,7 +564,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dmsezv.AnonymTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

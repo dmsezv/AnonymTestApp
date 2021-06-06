@@ -17,9 +17,22 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
     // MARK: - Drawing Constants
 
+    let estimatedRowHeight: CGFloat = 44
+
     // MARK: - Object Lifestyle
 
     // MARK: - Views
+
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = estimatedRowHeight
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        return tableView
+    }()
 
     // MARK: - View Lifecycle
 
@@ -51,5 +64,17 @@ extension PostListViewController {
 
 extension PostListViewController {
     func displaySomething(viewModel: PostList.ViewModel) {
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        1
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
     }
 }

@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol PresentationAssemblyProtocol {
+    func defaultNavigationController(rootViewController: UIViewController) -> UINavigationController
     func postListViewController() -> PostListViewController
 }
 
@@ -16,6 +18,10 @@ class PresentationAssembly: PresentationAssemblyProtocol {
 
     init(serviceAssembly: ServiceAssemblyProtocol) {
         self.serviceAssembly = serviceAssembly
+    }
+
+    func defaultNavigationController(rootViewController: UIViewController) -> UINavigationController {
+        UINavigationController(rootViewController: rootViewController)
     }
 
     func postListViewController() -> PostListViewController {
