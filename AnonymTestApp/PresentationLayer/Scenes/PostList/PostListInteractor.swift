@@ -8,24 +8,34 @@
 import UIKit
 
 protocol PostListBusinessLogic {
-    func doSomething(request: PostList.Request)
+    func getPostList()
 }
 
 protocol PostListDataStore {
-    // var name: String { get set }
+    var postListModel: PostListApiModel? { get set }
 }
 
 class PostListInteractor: PostListBusinessLogic, PostListDataStore {
     private let postListService: PostListServiceProtocol
+
     var presenter: PostListPresentationLogic?
+    var postListModel: PostListApiModel?
 
     init(postListService: PostListServiceProtocol) {
         self.postListService = postListService
     }
 
-    // MARK: Do something
-
-    func doSomething(request: PostList.Request) {
-
+    func getPostList() {
+        postListService.getPostList { result in
+            switch result {
+            case .success(let model):
+                self.postListModel = model
+                let response = PostList.Response(postListModel: model, isError: false)
+                self.presenter?.presentPostList(response: response)
+            case .failure(_):
+                let response = PostList.Response(postListModel: nil, isError: true)
+                self.presenter?.presentPostList(response: response)
+            }
+        }
     }
 }

@@ -7,28 +7,29 @@
 
 import Foundation
 
+typealias PostListResult = Result<PostListApiModel, Error>
+
 protocol PostListServiceProtocol {
-    func getPostList()
+    func getPostList(_ complete: @escaping(PostListResult) -> Void)
 }
 
 class PostListService: PostListServiceProtocol {
-    typealias PostListResult = Result<PostListApiModel?, Error>
     private let apiManager: ApiManagerProtocol
 
     init(apiManager: ApiManagerProtocol) {
         self.apiManager = apiManager
     }
 
-    func getPostList() {
-        apiManager.call(endpoint: ApiEndpointItem.getPosts(pageSize: 1,
+    func getPostList(_ complete: @escaping(PostListResult) -> Void) {
+        apiManager.call(endpoint: ApiEndpointItem.getPosts(pageSize: 20,
                                                            nextPageCursor: nil,
                                                            orderBy: nil),
                         parameters: nil) { (result: PostListResult) in
             switch result {
             case .success(let model):
-                break
+                complete(.success(model))
             case .failure(let error):
-                break
+                complete(.failure(error))
             }
         }
     }

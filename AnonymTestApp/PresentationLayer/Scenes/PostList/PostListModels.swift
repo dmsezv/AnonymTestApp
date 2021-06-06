@@ -16,7 +16,6 @@ enum PostList {
     struct Response {
         var postListModel: PostListApiModel?
         var isError: Bool
-        var message: String?
     }
 
     struct ViewModel {
@@ -27,9 +26,9 @@ enum PostList {
         }
 
         struct Author {
-            let id: String
-            let name: String
-            let photoUrl: String
+            let id: String?
+            let name: String?
+            let photoUrl: String?
         }
     }
 }

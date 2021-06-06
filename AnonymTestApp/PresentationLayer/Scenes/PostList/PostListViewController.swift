@@ -8,7 +8,8 @@
 import UIKit
 
 protocol PostListDisplayLogic: AnyObject {
-    func displaySomething(viewModel: PostList.ViewModel)
+    func displayPostList(viewModel: PostList.ViewModel)
+    func displayError(_ message: String)
 }
 
 class PostListViewController: UIViewController, PostListDisplayLogic {
@@ -86,6 +87,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
         tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
+        tableView.backgroundView = activityIndicator
 
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
@@ -107,12 +109,16 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupView()
+        interactor?.getPostList()
     }
 
     private func setupView() {
         navigationController?.navigationItem.largeTitleDisplayMode = .never
         navigationController?.navigationBar.shadowImage = UIImage()
+
+        activityIndicator.startAnimating()
 
         view.backgroundColor = .systemBackground
         view.addSubview(titleViewNavBar)
@@ -141,21 +147,56 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
             tableView.bottomAnchor.constraint(equalTo: safeView.bottomAnchor)
         ])
     }
+
+    private func updateTableView() {
+        viewModel = nil
+        tableView.reloadData()
+
+        if !refreshControl.isRefreshing {
+            activityIndicator.startAnimating()
+        }
+    }
+
 }
 
 // MARK: - Business Logic
 
 extension PostListViewController {
-    func doSomething() {
-        let request = PostList.Request()
-        interactor?.doSomething(request: request)
+    func getPostList() {
+        interactor?.getPostList()
     }
 }
 
 // MARK: - Display Logic
 
 extension PostListViewController {
-    func displaySomething(viewModel: PostList.ViewModel) {
+    func displayPostList(viewModel: PostList.ViewModel) {
+        disableAnimationActivity()
+
+        self.viewModel = viewModel
+
+        tableView.reloadData()
+    }
+
+    func displayError(_ message: String) {
+        disableAnimationActivity()
+
+        let alert = UIAlertController.errorAlert(message)
+        present(alert, animated: true, completion: nil)
+    }
+
+    private func disableAnimationActivity() {
+        if activityIndicator.isAnimating {
+            activityIndicator.stopAnimating()
+        }
+
+        if refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
+
+        if tableView.tableFooterView?.isHidden == false {
+            tableView.tableFooterView?.isHidden = true
+        }
     }
 }
 
@@ -163,17 +204,19 @@ extension PostListViewController {
 
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        viewModel?.posts.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView
+        guard
+            let post = viewModel?.posts[indexPath.row],
+            let cell = tableView
                 .dequeueReusableCell(withIdentifier: PostListCell.identifier,
                                      for: indexPath) as? PostListCell else {
             return UITableViewCell()
         }
 
-        cell.configure()
+        cell.configure(with: post)
 
         return cell
     }

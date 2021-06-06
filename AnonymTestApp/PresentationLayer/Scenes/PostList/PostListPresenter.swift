@@ -8,15 +8,30 @@
 import UIKit
 
 protocol PostListPresentationLogic {
-    func presentSomething(response: PostList.Response)
+    func presentPostList(response: PostList.Response)
 }
 
 class PostListPresenter: PostListPresentationLogic {
+    typealias ViewModel = PostList.ViewModel
     weak var viewController: PostListDisplayLogic?
 
-    // MARK: Do something
+    func presentPostList(response: PostList.Response) {
+        if let postList = response.postListModel?.items, !response.isError {
+            var postsViewModel: [ViewModel.Post] = []
+            for post in postList {
+                postsViewModel
+                    .append(ViewModel.Post(author: ViewModel.Author(id: post.author?.id,
+                                                                    name: post.author?.name,
+                                                                    photoUrl: post.author?.url)))
+            }
 
-    func presentSomething(response: PostList.Response) {
-
+            DispatchQueue.main.async {
+                self.viewController?.displayPostList(viewModel: ViewModel(posts: postsViewModel))
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.viewController?.displayError("Can't loaded list")
+            }
+        }
     }
 }

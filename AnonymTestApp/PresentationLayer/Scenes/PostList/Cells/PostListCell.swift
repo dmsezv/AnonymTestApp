@@ -14,7 +14,7 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Views
 
-    private lazy var titleLabel: UILabel = {
+    private lazy var nameAuthorLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)
         label.textColor = .black
@@ -40,23 +40,23 @@ class PostListCell: UITableViewCell {
     private func setupView() {
         selectionStyle = .none
 
-        addSubview(titleLabel)
+        addSubview(nameAuthorLabel)
 
         setupLayout()
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            nameAuthorLabel.topAnchor.constraint(equalTo: topAnchor),
+            nameAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 
     // MARK: - Configure
 
-    func configure() {
-        textLabel?.text = "test"
+    func configure(with model: PostList.ViewModel.Post) {
+        textLabel?.text = model.author.name
     }
 }

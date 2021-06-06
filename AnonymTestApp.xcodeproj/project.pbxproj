@@ -32,6 +32,7 @@
 		4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */; };
 		4D6A5A6A266D5181003F7CB8 /* PostListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */; };
 		4D6A5A6D266D5C74003F7CB8 /* PostListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */; };
+		4D6A5A70266D72F9003F7CB8 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A6F266D72F9003F7CB8 /* UIAlertController+Extension.swift */; };
 		4D768A8F266D36300019279B /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A8E266D36300019279B /* ApplicationAssembly.swift */; };
 		4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A90266D36480019279B /* PresentationAssembly.swift */; };
 		4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A92266D36630019279B /* ServiceAssembly.swift */; };
@@ -68,6 +69,7 @@
 		4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
 		4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListInteractor.swift; sourceTree = "<group>"; };
 		4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListCell.swift; sourceTree = "<group>"; };
+		4D6A5A6F266D72F9003F7CB8 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		4D768A8E266D36300019279B /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		4D768A90266D36480019279B /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		4D768A92266D36630019279B /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
@@ -167,6 +169,14 @@
 				4D6A5A6C266D5C74003F7CB8 /* PostListCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		4D6A5A6E266D72BE003F7CB8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A5A6F266D72F9003F7CB8 /* UIAlertController+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		4D768A84266D35000019279B /* CoreLayer */ = {
@@ -270,6 +280,7 @@
 				4D768A85266D350A0019279B /* ServiceLayer */,
 				4D768A84266D35000019279B /* CoreLayer */,
 				4D768A88266D35420019279B /* ApplicationSetup */,
+				4D6A5A6E266D72BE003F7CB8 /* Extensions */,
 				4D768A87266D351B0019279B /* Resourses */,
 				4DAF31B6266D32FA00E492E2 /* Info.plist */,
 			);
@@ -392,6 +403,7 @@
 				4D6A5A4C266D4D26003F7CB8 /* SizeApiModel.swift in Sources */,
 				4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */,
 				4D6A5A50266D4D72003F7CB8 /* BannerTypeApiModel.swift in Sources */,
+				4D6A5A70266D72F9003F7CB8 /* UIAlertController+Extension.swift in Sources */,
 				4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */,
 				4D768A95266D36780019279B /* CoreAssembly.swift in Sources */,
 				4DAF31AB266D32F700E492E2 /* SceneDelegate.swift in Sources */,
