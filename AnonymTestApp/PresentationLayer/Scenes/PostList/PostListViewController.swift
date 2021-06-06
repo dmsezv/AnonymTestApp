@@ -82,6 +82,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         let tableView = UITableView()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
         tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
@@ -162,10 +163,18 @@ extension PostListViewController {
 
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+        10
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        guard let cell = tableView
+                .dequeueReusableCell(withIdentifier: PostListCell.identifier,
+                                     for: indexPath) as? PostListCell else {
+            return UITableViewCell()
+        }
+
+        cell.configure()
+
+        return cell
     }
 }
