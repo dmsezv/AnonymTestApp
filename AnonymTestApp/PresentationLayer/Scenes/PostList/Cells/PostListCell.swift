@@ -14,6 +14,12 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Views
 
+    private lazy var avatarAuthorImageView: UIImageView = {
+        let imageView = UIImageView()
+
+        return imageView
+    }()
+
     private lazy var nameAuthorLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 15)

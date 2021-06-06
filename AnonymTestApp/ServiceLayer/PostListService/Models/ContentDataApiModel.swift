@@ -9,12 +9,10 @@ import Foundation
 
 struct ContentDataApiModel: Codable {
     var value: String?
-    var extraSmall, small, original, medium: ExtraLargeApiModel?
-    var large: ExtraLargeApiModel?
+    var extraSmall, small, original, medium, large, extraLarge: ExtraLargeApiModel?
     var duration: Double?
     var url: String?
     var size: SizeApiModel?
     var previewImage: PreviewImageApiModel?
-    var extraLarge: ExtraLargeApiModel?
     var values: [String]?
 }

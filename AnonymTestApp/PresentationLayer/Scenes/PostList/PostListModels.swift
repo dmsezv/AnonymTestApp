@@ -11,6 +11,7 @@ enum PostList {
   // MARK: - Use cases
 
     struct Request {
+        var  needRefresh: Bool
     }
 
     struct Response {
@@ -20,6 +21,8 @@ enum PostList {
 
     struct ViewModel {
         var posts: [Post]
+        var isLastPage: Bool = true
+        var isLoading: Bool = true
 
         struct Post {
             let author: Author

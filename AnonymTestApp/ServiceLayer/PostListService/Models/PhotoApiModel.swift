@@ -8,7 +8,7 @@
 import Foundation
 
 struct PhotoApiModel: Codable {
-    var type: BannerTypeApiModel?
+    // var type: BannerTypeApiModel?
     var id: String?
     var data: PhotoDataApiModel?
 }

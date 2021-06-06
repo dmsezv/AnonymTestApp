@@ -164,8 +164,8 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 // MARK: - Business Logic
 
 extension PostListViewController {
-    func getPostList() {
-        interactor?.getPostList()
+    func getPostList(_ needRefresh: Bool = true) {
+        interactor?.getPostList(request: PostList.Request(needRefresh: needRefresh))
     }
 }
 
@@ -176,12 +176,15 @@ extension PostListViewController {
         disableAnimationActivity()
 
         self.viewModel = viewModel
+        self.viewModel?.isLoading = false
 
         tableView.reloadData()
     }
 
     func displayError(_ message: String) {
         disableAnimationActivity()
+
+        viewModel?.isLoading = false
 
         let alert = UIAlertController.errorAlert(message)
         present(alert, animated: true, completion: nil)
@@ -222,6 +225,20 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let viewModel = viewModel else { return }
+
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=
+                scrollView.contentSize.height) &&
+                !viewModel.isLastPage &&
+            tableView.tableFooterView?.isHidden == true {
+            tableView.tableFooterView?.isHidden = false
+
+            getPostList(false)
+        }
+    }
+
 }
 
 // MARK: - Events

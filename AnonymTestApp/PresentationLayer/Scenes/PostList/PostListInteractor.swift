@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PostListBusinessLogic {
-    func getPostList()
+    func getPostList(request: PostList.Request)
 }
 
 protocol PostListDataStore {
@@ -25,12 +25,23 @@ class PostListInteractor: PostListBusinessLogic, PostListDataStore {
         self.postListService = postListService
     }
 
-    func getPostList() {
-        postListService.getPostList { result in
+    func getPostList(request: PostList.Request) {
+        if request.needRefresh {
+            postListModel = nil
+        }
+
+        postListService.getPostList(cursor: postListModel?.cursor) { result in
             switch result {
             case .success(let model):
-                self.postListModel = model
-                let response = PostList.Response(postListModel: model, isError: false)
+                if let _ = self.postListModel?.items,
+                   let items = model.items {
+                    self.postListModel?.items?.append(contentsOf: items)
+                    self.postListModel?.cursor = model.cursor
+                } else {
+                    self.postListModel = model
+                }
+
+                let response = PostList.Response(postListModel: self.postListModel, isError: false)
                 self.presenter?.presentPostList(response: response)
             case .failure(_):
                 let response = PostList.Response(postListModel: nil, isError: true)

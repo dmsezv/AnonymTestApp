@@ -24,9 +24,11 @@ class PostListPresenter: PostListPresentationLogic {
                                                                     name: post.author?.name,
                                                                     photoUrl: post.author?.url)))
             }
-
+            let viewModel = ViewModel(posts: postsViewModel,
+                                      isLastPage: response.postListModel?.cursor == nil,
+                                      isLoading: true)
             DispatchQueue.main.async {
-                self.viewController?.displayPostList(viewModel: ViewModel(posts: postsViewModel))
+                self.viewController?.displayPostList(viewModel: viewModel)
             }
         } else {
             DispatchQueue.main.async {

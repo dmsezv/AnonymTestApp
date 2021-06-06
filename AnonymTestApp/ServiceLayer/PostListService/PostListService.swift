@@ -10,7 +10,7 @@ import Foundation
 typealias PostListResult = Result<PostListApiModel, Error>
 
 protocol PostListServiceProtocol {
-    func getPostList(_ complete: @escaping(PostListResult) -> Void)
+    func getPostList(cursor: String?, _ complete: @escaping(PostListResult) -> Void)
 }
 
 class PostListService: PostListServiceProtocol {
@@ -20,9 +20,9 @@ class PostListService: PostListServiceProtocol {
         self.apiManager = apiManager
     }
 
-    func getPostList(_ complete: @escaping(PostListResult) -> Void) {
+    func getPostList(cursor: String?, _ complete: @escaping(PostListResult) -> Void) {
         apiManager.call(endpoint: ApiEndpointItem.getPosts(pageSize: 20,
-                                                           nextPageCursor: nil,
+                                                           nextPageCursor: cursor,
                                                            orderBy: nil),
                         parameters: nil) { (result: PostListResult) in
             switch result {
