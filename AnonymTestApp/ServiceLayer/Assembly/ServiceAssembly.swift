@@ -8,7 +8,7 @@
 import Foundation
 
 protocol ServiceAssemblyProtocol {
-
+    func postListService() -> PostListServiceProtocol
 }
 
 class ServiceAssembly: ServiceAssemblyProtocol {
@@ -18,4 +18,7 @@ class ServiceAssembly: ServiceAssemblyProtocol {
         self.coreAssembly = coreAssembly
     }
 
+    func postListService() -> PostListServiceProtocol {
+        PostListService(apiManager: coreAssembly.apiManager())
+    }
 }

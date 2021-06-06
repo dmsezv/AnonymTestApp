@@ -21,43 +21,52 @@ enum ApiEndpointItem {
 
     // MARK: - User Actions
 
+    case getPosts(pageSize: Int, nextPageCursor: String?, orderBy: String?)
 }
 
 extension ApiEndpointItem: ApiEndpointItemProtocol {
     var baseUrl: String {
         switch ApiManager.networkEnvironment {
-        case .dev: return ""
+        case .dev: return "https://k8s-stage.apianon.ru/posts/"
         case .prod: return ""
         }
     }
 
     var path: String {
         switch self {
-        default: break
+        case .getPosts(let pageSize, let nextPageCursor, let orderBy):
+            var urlPath = "posts?first=\(pageSize)"
+            if let nextPageCursor = nextPageCursor {
+                urlPath += "&after=\(nextPageCursor)"
+            }
+            if let orderBy = orderBy {
+                urlPath += "&orderBy=\(orderBy)"
+            }
+            return urlPath
         }
     }
 
     var httpMethod: String {
         switch self {
-        default: break
+        case .getPosts: return "GET"
         }
     }
 
     var headers: [String: Any]? {
         switch self {
-        default: break
+        default: return nil
         }
     }
 
     var url: URL? {
         switch self {
-        default: return URL(string: baseUrl + path)
+        default: return URL(string: baseUrl + version + path)
         }
     }
 
     var version: String {
         switch self {
-        default: break
+        default: return "v1/"
         }
     }
 }

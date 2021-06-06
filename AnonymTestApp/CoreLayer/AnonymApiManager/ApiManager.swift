@@ -34,7 +34,7 @@ class ApiManager: ApiManagerProtocol, NetworkEnvironmentProtocol {
         let request: NSMutableURLRequest = NSMutableURLRequest(url: url)
         request.httpMethod = endpoint.httpMethod
 
-        let task = session.dataTask(with: request as URLRequest) { data, response, error in
+        let task = session.dataTask(with: request as URLRequest) { data, _, error in
             if let error = error {
                 complete(.failure(error))
             } else {
