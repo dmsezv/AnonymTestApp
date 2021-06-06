@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4D6A5A31266D40F9003F7CB8 /* ApiEndpointItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A30266D40F9003F7CB8 /* ApiEndpointItem.swift */; };
+		4D6A5A33266D4161003F7CB8 /* NetworkEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A32266D4161003F7CB8 /* NetworkEnvironment.swift */; };
+		4D6A5A35266D4282003F7CB8 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A34266D4282003F7CB8 /* ApiManager.swift */; };
 		4D768A8F266D36300019279B /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A8E266D36300019279B /* ApplicationAssembly.swift */; };
 		4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A90266D36480019279B /* PresentationAssembly.swift */; };
 		4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A92266D36630019279B /* ServiceAssembly.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D6A5A30266D40F9003F7CB8 /* ApiEndpointItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiEndpointItem.swift; sourceTree = "<group>"; };
+		4D6A5A32266D4161003F7CB8 /* NetworkEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEnvironment.swift; sourceTree = "<group>"; };
+		4D6A5A34266D4282003F7CB8 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		4D768A8E266D36300019279B /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		4D768A90266D36480019279B /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		4D768A92266D36630019279B /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
@@ -45,10 +51,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D6A5A2F266D40CC003F7CB8 /* AnonymApiManager */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A5A30266D40F9003F7CB8 /* ApiEndpointItem.swift */,
+				4D6A5A32266D4161003F7CB8 /* NetworkEnvironment.swift */,
+				4D6A5A34266D4282003F7CB8 /* ApiManager.swift */,
+			);
+			path = AnonymApiManager;
+			sourceTree = "<group>";
+		};
 		4D768A84266D35000019279B /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
 				4D768A8D266D35A50019279B /* Assembly */,
+				4D6A5A2F266D40CC003F7CB8 /* AnonymApiManager */,
 			);
 			path = CoreLayer;
 			sourceTree = "<group>";
@@ -141,10 +158,10 @@
 		4DAF31A7266D32F700E492E2 /* AnonymTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				4D768A88266D35420019279B /* ApplicationConfigure */,
 				4D768A86266D35100019279B /* PresentationLayer */,
 				4D768A85266D350A0019279B /* ServiceLayer */,
 				4D768A84266D35000019279B /* CoreLayer */,
+				4D768A88266D35420019279B /* ApplicationConfigure */,
 				4D768A87266D351B0019279B /* Resourses */,
 				4DAF31B6266D32FA00E492E2 /* Info.plist */,
 			);
@@ -244,7 +261,10 @@
 			files = (
 				4D768A8F266D36300019279B /* ApplicationAssembly.swift in Sources */,
 				4DAF31AD266D32F700E492E2 /* ViewController.swift in Sources */,
+				4D6A5A35266D4282003F7CB8 /* ApiManager.swift in Sources */,
+				4D6A5A31266D40F9003F7CB8 /* ApiEndpointItem.swift in Sources */,
 				4DAF31A9266D32F700E492E2 /* AppDelegate.swift in Sources */,
+				4D6A5A33266D4161003F7CB8 /* NetworkEnvironment.swift in Sources */,
 				4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */,
 				4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */,
 				4D768A95266D36780019279B /* CoreAssembly.swift in Sources */,
