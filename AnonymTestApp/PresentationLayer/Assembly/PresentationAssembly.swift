@@ -37,6 +37,8 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         router.viewController = viewController
         router.dataStore = interactor
 
+        viewController.title = "Post List"
+
         return viewController
     }
 }
