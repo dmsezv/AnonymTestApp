@@ -12,13 +12,17 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Drawing Constants
 
-    let avatarImageWidthAnchor: CGFloat = 100
+    let avatarImageWidthAnchor: CGFloat = 70
+    let commonPadding: CGFloat = 10
 
     // MARK: - Views
 
     private lazy var avatarAuthorImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.backgroundColor = .lightGray
         imageView.contentMode = .scaleAspectFit
+        imageView.layer.cornerRadius = avatarImageWidthAnchor / 2
+        imageView.layer.masksToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
@@ -51,6 +55,11 @@ class PostListCell: UITableViewCell {
         setupView()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+    }
+
     private func setupView() {
         selectionStyle = .none
 
@@ -62,15 +71,15 @@ class PostListCell: UITableViewCell {
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor),
-            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
+            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
             avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
             avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
 
-            nameAuthorLabel.topAnchor.constraint(equalTo: avatarAuthorImageView.bottomAnchor, constant: 20),
-            nameAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            nameAuthorLabel.topAnchor.constraint(equalTo: avatarAuthorImageView.bottomAnchor, constant: commonPadding),
+            nameAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
+            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding),
+            nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding)
         ])
     }
 
