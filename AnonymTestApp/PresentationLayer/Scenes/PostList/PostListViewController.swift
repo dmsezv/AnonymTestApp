@@ -21,6 +21,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
     let navBarHeight: CGFloat = 44
     let commonPadding: CGFloat = 10
     let mainAlpha: CGFloat = 0.85
+    let footerActivityIndicatorHeight: CGFloat = 50
 
     // MARK: - Object Lifestyle
 
@@ -84,8 +85,18 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = estimatedRowHeight
         tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
+
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.frame = CGRect(x: 0,
+                                         y: 0,
+                                         width: tableView.frame.width,
+                                         height: footerActivityIndicatorHeight)
+        activityIndicator.startAnimating()
+
         tableView.tableFooterView = activityIndicator
         tableView.tableFooterView?.isHidden = true
+
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         return tableView
