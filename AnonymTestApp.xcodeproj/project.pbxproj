@@ -26,6 +26,11 @@
 		4D6A5A56266D4E18003F7CB8 /* PhotoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A55266D4E18003F7CB8 /* PhotoDataModel.swift */; };
 		4D6A5A58266D4E47003F7CB8 /* StatsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A57266D4E47003F7CB8 /* StatsModel.swift */; };
 		4D6A5A5A266D4E83003F7CB8 /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A59266D4E83003F7CB8 /* CommentsModel.swift */; };
+		4D6A5A65266D5181003F7CB8 /* PostListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A5F266D5181003F7CB8 /* PostListPresenter.swift */; };
+		4D6A5A67266D5181003F7CB8 /* PostListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A61266D5181003F7CB8 /* PostListRouter.swift */; };
+		4D6A5A68266D5181003F7CB8 /* PostListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A62266D5181003F7CB8 /* PostListModels.swift */; };
+		4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */; };
+		4D6A5A6A266D5181003F7CB8 /* PostListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */; };
 		4D768A8F266D36300019279B /* ApplicationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A8E266D36300019279B /* ApplicationAssembly.swift */; };
 		4D768A91266D36480019279B /* PresentationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A90266D36480019279B /* PresentationAssembly.swift */; };
 		4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D768A92266D36630019279B /* ServiceAssembly.swift */; };
@@ -58,6 +63,11 @@
 		4D6A5A55266D4E18003F7CB8 /* PhotoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDataModel.swift; sourceTree = "<group>"; };
 		4D6A5A57266D4E47003F7CB8 /* StatsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsModel.swift; sourceTree = "<group>"; };
 		4D6A5A59266D4E83003F7CB8 /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
+		4D6A5A5F266D5181003F7CB8 /* PostListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListPresenter.swift; sourceTree = "<group>"; };
+		4D6A5A61266D5181003F7CB8 /* PostListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListRouter.swift; sourceTree = "<group>"; };
+		4D6A5A62266D5181003F7CB8 /* PostListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListModels.swift; sourceTree = "<group>"; };
+		4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListViewController.swift; sourceTree = "<group>"; };
+		4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostListInteractor.swift; sourceTree = "<group>"; };
 		4D768A8E266D36300019279B /* ApplicationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationAssembly.swift; sourceTree = "<group>"; };
 		4D768A90266D36480019279B /* PresentationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentationAssembly.swift; sourceTree = "<group>"; };
 		4D768A92266D36630019279B /* ServiceAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAssembly.swift; sourceTree = "<group>"; };
@@ -132,6 +142,26 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4D6A5A5D266D5161003F7CB8 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A5A5E266D5169003F7CB8 /* PostList */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		4D6A5A5E266D5169003F7CB8 /* PostList */ = {
+			isa = PBXGroup;
+			children = (
+				4D6A5A5F266D5181003F7CB8 /* PostListPresenter.swift */,
+				4D6A5A61266D5181003F7CB8 /* PostListRouter.swift */,
+				4D6A5A62266D5181003F7CB8 /* PostListModels.swift */,
+				4D6A5A63266D5181003F7CB8 /* PostListViewController.swift */,
+				4D6A5A64266D5181003F7CB8 /* PostListInteractor.swift */,
+			);
+			path = PostList;
+			sourceTree = "<group>";
+		};
 		4D768A84266D35000019279B /* CoreLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				4D768A8B266D35930019279B /* Assembly */,
+				4D6A5A5D266D5161003F7CB8 /* Scenes */,
 				4DAF31AC266D32F700E492E2 /* ViewController.swift */,
 				4D768A89266D35730019279B /* Storyboards */,
 			);
@@ -342,13 +373,17 @@
 				4D6A5A54266D4DFD003F7CB8 /* PhotoModel.swift in Sources */,
 				4D6A5A31266D40F9003F7CB8 /* ApiEndpointItem.swift in Sources */,
 				4D6A5A3C266D4A29003F7CB8 /* APIResponse.swift in Sources */,
+				4D6A5A68266D5181003F7CB8 /* PostListModels.swift in Sources */,
 				4D6A5A44266D4C37003F7CB8 /* PostTypeModel.swift in Sources */,
+				4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */,
 				4D6A5A52266D4DB6003F7CB8 /* AuthorModel.swift in Sources */,
 				4D6A5A56266D4E18003F7CB8 /* PhotoDataModel.swift in Sources */,
+				4D6A5A6A266D5181003F7CB8 /* PostListInteractor.swift in Sources */,
 				4D6A5A46266D4C98003F7CB8 /* ContentModel.swift in Sources */,
 				4DAF31A9266D32F700E492E2 /* AppDelegate.swift in Sources */,
 				4D6A5A4E266D4D44003F7CB8 /* PreviewImageModel.swift in Sources */,
 				4D6A5A4A266D4D06003F7CB8 /* ExtraLargeModel.swift in Sources */,
+				4D6A5A67266D5181003F7CB8 /* PostListRouter.swift in Sources */,
 				4D6A5A33266D4161003F7CB8 /* NetworkEnvironment.swift in Sources */,
 				4D6A5A4C266D4D26003F7CB8 /* SizeModel.swift in Sources */,
 				4D768A93266D36630019279B /* ServiceAssembly.swift in Sources */,
@@ -357,6 +392,7 @@
 				4D768A95266D36780019279B /* CoreAssembly.swift in Sources */,
 				4DAF31AB266D32F700E492E2 /* SceneDelegate.swift in Sources */,
 				4D6A5A58266D4E47003F7CB8 /* StatsModel.swift in Sources */,
+				4D6A5A65266D5181003F7CB8 /* PostListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
