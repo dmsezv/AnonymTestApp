@@ -15,11 +15,17 @@ protocol PostListDataPassing {
     var dataStore: PostListDataStore? { get }
 }
 
-class PostListRouter: NSObject, PostListRoutingLogic, PostListDataPassing {
+class PostListRouter: PostListRoutingLogic, PostListDataPassing {
+    private let presenterAssembly: PresentationAssemblyProtocol
+
     weak var viewController: PostListViewController?
     var dataStore: PostListDataStore?
 
-    // MARK: Routing
+    init(presenterAssembly: PresentationAssemblyProtocol) {
+        self.presenterAssembly = presenterAssembly
+    }
+
+    // MARK: - Routing
 
     // func routeToSomewhere(segue: UIStoryboardSegue?)
     // {
@@ -36,14 +42,14 @@ class PostListRouter: NSObject, PostListRoutingLogic, PostListDataPassing {
     //  }
     // }
 
-    // MARK: Navigation
+    // MARK: - Navigation
 
     // func navigateToSomewhere(source: PostListViewController, destination: SomewhereViewController)
     // {
     //  source.show(destination, sender: nil)
     // }
 
-    // MARK: Passing data
+    // MARK: - Passing data
 
     // func passDataToSomewhere(source: PostListDataStore, destination: inout SomewhereDataStore)
     // {

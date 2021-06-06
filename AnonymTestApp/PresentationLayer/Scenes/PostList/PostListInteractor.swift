@@ -16,8 +16,12 @@ protocol PostListDataStore {
 }
 
 class PostListInteractor: PostListBusinessLogic, PostListDataStore {
+    private let postListService: PostListServiceProtocol
     var presenter: PostListPresentationLogic?
-    // var name: String = ""
+
+    init(postListService: PostListServiceProtocol) {
+        self.postListService = postListService
+    }
 
     // MARK: Do something
 

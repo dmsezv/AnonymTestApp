@@ -15,50 +15,41 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
     var interactor: PostListBusinessLogic?
     var router: (PostListRoutingLogic & PostListDataPassing)?
 
-    // MARK: Object lifecycle
+    // MARK: - Drawing Constants
 
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setup()
-    }
+    // MARK: - Object Lifestyle
 
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
+    // MARK: - Views
 
-    // MARK: Setup
-
-    private func setup() {
-        let viewController = self
-        let interactor = PostListInteractor()
-        let presenter = PostListPresenter()
-        let router = PostListRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
-
-    // MARK: - View lifecycle
+    // MARK: - View Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        doSomething()
+        setupView()
     }
 
-    // MARK: Do something
+    private func setupView() {
 
-    // @IBOutlet weak var nameTextField: UITextField!
+        setupLayout()
+    }
 
+    private func setupLayout() {
+
+    }
+}
+
+// MARK: - Business Logic
+
+extension PostListViewController {
     func doSomething() {
         let request = PostList.Request()
         interactor?.doSomething(request: request)
     }
+}
 
+// MARK: - Display Logic
+
+extension PostListViewController {
     func displaySomething(viewModel: PostList.ViewModel) {
-        // nameTextField.text = viewModel.name
     }
 }
