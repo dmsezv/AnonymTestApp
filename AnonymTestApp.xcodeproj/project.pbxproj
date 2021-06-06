@@ -37,6 +37,79 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4D768A84266D35000019279B /* CoreLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4D768A8D266D35A50019279B /* CoreAssembly */,
+			);
+			path = CoreLayer;
+			sourceTree = "<group>";
+		};
+		4D768A85266D350A0019279B /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4D768A8C266D359E0019279B /* ServiceAssembly */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		4D768A86266D35100019279B /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4D768A8B266D35930019279B /* PresentationAssembly */,
+				4DAF31AC266D32F700E492E2 /* ViewController.swift */,
+				4D768A89266D35730019279B /* Storyboards */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		4D768A87266D351B0019279B /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				4DAF31B1266D32FA00E492E2 /* Assets.xcassets */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		4D768A88266D35420019279B /* ApplicationConfigure */ = {
+			isa = PBXGroup;
+			children = (
+				4DAF31A8266D32F700E492E2 /* AppDelegate.swift */,
+				4DAF31AA266D32F700E492E2 /* SceneDelegate.swift */,
+			);
+			path = ApplicationConfigure;
+			sourceTree = "<group>";
+		};
+		4D768A89266D35730019279B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4DAF31AE266D32F700E492E2 /* Main.storyboard */,
+				4DAF31B3266D32FA00E492E2 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4D768A8B266D35930019279B /* PresentationAssembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PresentationAssembly;
+			sourceTree = "<group>";
+		};
+		4D768A8C266D359E0019279B /* ServiceAssembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ServiceAssembly;
+			sourceTree = "<group>";
+		};
+		4D768A8D266D35A50019279B /* CoreAssembly */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CoreAssembly;
+			sourceTree = "<group>";
+		};
 		4DAF319C266D32F700E492E2 = {
 			isa = PBXGroup;
 			children = (
@@ -56,12 +129,11 @@
 		4DAF31A7266D32F700E492E2 /* AnonymTestApp */ = {
 			isa = PBXGroup;
 			children = (
-				4DAF31A8266D32F700E492E2 /* AppDelegate.swift */,
-				4DAF31AA266D32F700E492E2 /* SceneDelegate.swift */,
-				4DAF31AC266D32F700E492E2 /* ViewController.swift */,
-				4DAF31AE266D32F700E492E2 /* Main.storyboard */,
-				4DAF31B1266D32FA00E492E2 /* Assets.xcassets */,
-				4DAF31B3266D32FA00E492E2 /* LaunchScreen.storyboard */,
+				4D768A88266D35420019279B /* ApplicationConfigure */,
+				4D768A86266D35100019279B /* PresentationLayer */,
+				4D768A85266D350A0019279B /* ServiceLayer */,
+				4D768A84266D35000019279B /* CoreLayer */,
+				4D768A87266D351B0019279B /* Resourses */,
 				4DAF31B6266D32FA00E492E2 /* Info.plist */,
 			);
 			path = AnonymTestApp;
