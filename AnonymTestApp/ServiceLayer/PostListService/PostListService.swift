@@ -11,6 +11,7 @@ typealias PostListResult = Result<PostListApiModel, Error>
 
 protocol PostListServiceProtocol {
     func getPostList(cursor: String?, _ complete: @escaping(PostListResult) -> Void)
+    func getImageData(by url: String, _ complete: @escaping(Data?) -> Void)
 }
 
 class PostListService: PostListServiceProtocol {
@@ -30,6 +31,19 @@ class PostListService: PostListServiceProtocol {
                 complete(.success(model))
             case .failure(let error):
                 complete(.failure(error))
+            }
+        }
+    }
+
+    func getImageData(by url: String, _ complete: @escaping(Data?) -> Void) {
+        guard let url = URL(string: url) else {
+            complete(nil); return
+        }
+
+        apiManager.getData(by: url) { result in
+            switch result {
+            case .success(let data): complete(data)
+            case .failure(_): complete(nil)
             }
         }
     }

@@ -10,10 +10,6 @@ import UIKit
 enum PostList {
   // MARK: - Use cases
 
-    struct Request {
-        var  needRefresh: Bool
-    }
-
     struct Response {
         var postListModel: PostListApiModel?
         var isError: Bool

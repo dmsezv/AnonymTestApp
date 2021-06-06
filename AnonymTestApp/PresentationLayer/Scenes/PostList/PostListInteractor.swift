@@ -8,7 +8,8 @@
 import UIKit
 
 protocol PostListBusinessLogic {
-    func getPostList(request: PostList.Request)
+    func getPostList(needRefresh: Bool)
+    func getImage(by id: String, _ complete: @escaping(UIImage?) -> Void)
 }
 
 protocol PostListDataStore {
@@ -25,8 +26,8 @@ class PostListInteractor: PostListBusinessLogic, PostListDataStore {
         self.postListService = postListService
     }
 
-    func getPostList(request: PostList.Request) {
-        if request.needRefresh {
+    func getPostList(needRefresh: Bool) {
+        if needRefresh {
             postListModel = nil
         }
 
@@ -47,6 +48,14 @@ class PostListInteractor: PostListBusinessLogic, PostListDataStore {
                 let response = PostList.Response(postListModel: nil, isError: true)
                 self.presenter?.presentPostList(response: response)
             }
+        }
+    }
+
+    func getImage(by url: String, _ complete: @escaping(UIImage?) -> Void) {
+        postListService.getImageData(by: url) { data in
+            if let data = data {
+                complete(UIImage(data: data))
+            } else { complete(nil) }
         }
     }
 }

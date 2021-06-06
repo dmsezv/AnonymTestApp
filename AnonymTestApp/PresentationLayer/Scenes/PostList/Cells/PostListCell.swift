@@ -12,10 +12,14 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Drawing Constants
 
+    let avatarImageWidthAnchor: CGFloat = 100
+
     // MARK: - Views
 
     private lazy var avatarAuthorImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
     }()
@@ -30,6 +34,10 @@ class PostListCell: UITableViewCell {
     }()
 
     // MARK: - Setup
+
+    override func prepareForReuse() {
+        imageView?.image = nil
+    }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -47,13 +55,19 @@ class PostListCell: UITableViewCell {
         selectionStyle = .none
 
         addSubview(nameAuthorLabel)
+        addSubview(avatarAuthorImageView)
 
         setupLayout()
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            nameAuthorLabel.topAnchor.constraint(equalTo: topAnchor),
+            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor),
+            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+            avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+
+            nameAuthorLabel.topAnchor.constraint(equalTo: avatarAuthorImageView.bottomAnchor, constant: 20),
             nameAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
@@ -63,6 +77,12 @@ class PostListCell: UITableViewCell {
     // MARK: - Configure
 
     func configure(with model: PostList.ViewModel.Post) {
-        textLabel?.text = model.author.name
+        nameAuthorLabel.text = model.author.name
+    }
+
+    func setAvatar(_ image: UIImage?) {
+        DispatchQueue.main.async {
+            self.avatarAuthorImageView.image = image
+        }
     }
 }

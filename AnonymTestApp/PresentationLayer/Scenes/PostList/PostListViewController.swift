@@ -165,7 +165,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
 extension PostListViewController {
     func getPostList(_ needRefresh: Bool = true) {
-        interactor?.getPostList(request: PostList.Request(needRefresh: needRefresh))
+        interactor?.getPostList(needRefresh: needRefresh)
     }
 }
 
@@ -222,6 +222,14 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
         }
 
         cell.configure(with: post)
+
+        if let url = post.author.photoUrl {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.interactor?.getImage(by: url) { image in
+                    cell.setAvatar(image)
+                }
+            }
+        }
 
         return cell
     }

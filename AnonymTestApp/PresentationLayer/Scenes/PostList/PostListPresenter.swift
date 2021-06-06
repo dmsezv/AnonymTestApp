@@ -22,7 +22,7 @@ class PostListPresenter: PostListPresentationLogic {
                 postsViewModel
                     .append(ViewModel.Post(author: ViewModel.Author(id: post.author?.id,
                                                                     name: post.author?.name,
-                                                                    photoUrl: post.author?.url)))
+                                                                    photoUrl: post.author?.photo?.data?.extraSmall?.url)))
             }
             let viewModel = ViewModel(posts: postsViewModel,
                                       isLastPage: response.postListModel?.cursor == nil,
