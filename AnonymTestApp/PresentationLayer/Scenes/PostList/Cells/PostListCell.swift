@@ -14,7 +14,7 @@ class PostListCell: UITableViewCell {
 
     let avatarImageWidthAnchor: CGFloat = 28
     let commonPadding: CGFloat = 12
-    let nameAuthorLabelFontSize: CGFloat = 14
+    let commonLabelFontSize: CGFloat = 14
     let commonViewRadius: CGFloat = 12
     let dividerViewHeight: CGFloat = 3
     let dividerViewWidth: CGFloat = 30
@@ -45,7 +45,7 @@ class PostListCell: UITableViewCell {
 
     private lazy var nameAuthorLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: nameAuthorLabelFontSize)
+        label.font = .boldSystemFont(ofSize: commonLabelFontSize)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -61,10 +61,20 @@ class PostListCell: UITableViewCell {
         return view
     }()
 
+    private lazy var textContentLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: commonLabelFontSize)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        return label
+    }()
+
     // MARK: - Setup
 
     override func prepareForReuse() {
-        imageView?.image = nil
+        avatarAuthorImageView.image = nil
     }
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -92,6 +102,7 @@ class PostListCell: UITableViewCell {
         commonView.addSubview(avatarAuthorImageView)
         commonView.addSubview(nameAuthorLabel)
         commonView.addSubview(dividerView)
+        commonView.addSubview(textContentLabel)
 
         setupLayout()
     }
@@ -102,7 +113,6 @@ class PostListCell: UITableViewCell {
             commonView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
             commonView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -commonPadding),
             commonView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -commonPadding),
-            commonView.heightAnchor.constraint(equalToConstant: 100),
 
             avatarAuthorImageView.topAnchor.constraint(equalTo: commonView.topAnchor, constant: commonPadding),
             avatarAuthorImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
@@ -116,7 +126,12 @@ class PostListCell: UITableViewCell {
 
             nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
             nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
-            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
+            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding),
+
+            textContentLabel.topAnchor.constraint(equalTo: dividerView.topAnchor, constant: commonPadding),
+            textContentLabel.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
+            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding),
+            textContentLabel.bottomAnchor.constraint(equalTo: commonView.bottomAnchor, constant: -commonPadding)
         ])
     }
 
@@ -124,8 +139,22 @@ class PostListCell: UITableViewCell {
 
     func configure(with model: PostList.ViewModel.Post) {
         nameAuthorLabel.text = model.author.name
+        textContentLabel.text = model.text
 
+        layoutIfNeeded()
     }
+
+//    private func addToPost(_ text: String) {
+//        textContentLabel.text = text
+//        commonView.addSubview(textContentLabel)
+//
+//        NSLayoutConstraint.activate([
+//            textContentLabel.topAnchor.constraint(equalTo: dividerView.topAnchor, constant: commonPadding),
+//            textContentLabel.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
+//            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding),
+//            textContentLabel.bottomAnchor.constraint(equalTo: commonView.bottomAnchor, constant: -commonPadding)
+//        ])
+//    }
 
     func setAvatar(_ image: UIImage?) {
         DispatchQueue.main.async {

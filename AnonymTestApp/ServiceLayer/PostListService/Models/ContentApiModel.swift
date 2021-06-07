@@ -9,6 +9,6 @@ import Foundation
 
 struct ContentApiModel: Codable {
     var data: ContentDataApiModel?
-    // var type: BannerTypeApiModel?
+    var type: BannerTypeApiModel?
     var id: String?
 }

@@ -224,9 +224,12 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.configure(with: post)
 
-        if let url = post.author.photoUrl {
+        if let image = post.author.photoImage {
+            cell.setAvatar(image)
+        } else if let url = post.author.photoUrl {
             DispatchQueue.global(qos: .userInitiated).async {
                 self.interactor?.getImage(by: url) { image in
+                    self.viewModel?.posts[indexPath.row].author.photoImage = image
                     cell.setAvatar(image)
                 }
             }

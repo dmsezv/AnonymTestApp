@@ -21,21 +21,23 @@ enum PostList {
         var isLoading: Bool = true
 
         struct Post {
-            let author: Author
+            var author: Author
             let text: String?
-            let image: ImageContent?
+            var image: ImageContent?
         }
 
         struct ImageContent {
-            var url: String
-            var height: CGFloat
-            var width: CGFloat
+            let url: String
+            let height: CGFloat
+            let width: CGFloat
+            var contentImage: UIImage?
         }
 
         struct Author {
             let id: String?
             let name: String?
             let photoUrl: String?
+            var photoImage: UIImage?
         }
     }
 }
