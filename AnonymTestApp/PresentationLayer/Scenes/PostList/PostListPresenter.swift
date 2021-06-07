@@ -21,7 +21,7 @@ class PostListPresenter: PostListPresentationLogic {
             for post in postList {
                 let authorVM = fillViewModel(from: post.author)
                 let textVM = post.contents?.first(where: { $0.type == .text })?.data?.value
-                let image = post.contents?.first(where: { $0.type == .image })?.data?.medium
+                let image = post.contents?.first(where: { $0.type == .image })?.data?.small
                 let imageVM = fillViewModel(from: image)
 
                 postsViewModel
@@ -31,7 +31,7 @@ class PostListPresenter: PostListPresentationLogic {
             }
             let viewModel = ViewModel(posts: postsViewModel,
                                       isLastPage: response.postListModel?.cursor == nil,
-                                      isLoading: true)
+                                      isLoading: false)
             DispatchQueue.main.async {
                 self.viewController?.displayPostList(viewModel: viewModel)
             }

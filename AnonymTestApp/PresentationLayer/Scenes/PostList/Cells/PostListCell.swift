@@ -61,6 +61,17 @@ class PostListCell: UITableViewCell {
         return view
     }()
 
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.spacing = commonPadding
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        return stackView
+    }()
+
     private lazy var textContentLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: commonLabelFontSize)
@@ -74,14 +85,16 @@ class PostListCell: UITableViewCell {
     private lazy var contentImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
         return imageView
     }()
 
-    private lazy var contentImageViewHeightConstraint: NSLayoutConstraint = heightAnchor.constraint(equalToConstant: 0)
+    private lazy var contentImageViewHeightAnchor: NSLayoutConstraint = {
+        contentImageView.heightAnchor.constraint(equalToConstant: 0)
+    }()
 
     // MARK: - Setup
 
@@ -110,21 +123,22 @@ class PostListCell: UITableViewCell {
         selectionStyle = .none
         backgroundColor = .clear
 
-        addSubview(commonView)
+        contentView.addSubview(commonView)
         commonView.addSubview(avatarAuthorImageView)
         commonView.addSubview(nameAuthorLabel)
         commonView.addSubview(dividerView)
         commonView.addSubview(textContentLabel)
+        commonView.addSubview(contentImageView)
 
         setupLayout()
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            commonView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
-            commonView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
-            commonView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -commonPadding),
-            commonView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -commonPadding),
+            commonView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: commonPadding),
+            commonView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: commonPadding),
+            commonView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -commonPadding),
+            commonView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -commonPadding),
 
             avatarAuthorImageView.topAnchor.constraint(equalTo: commonView.topAnchor, constant: commonPadding),
             avatarAuthorImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
@@ -142,8 +156,13 @@ class PostListCell: UITableViewCell {
 
             textContentLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: commonPadding),
             textContentLabel.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
-            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding)
+            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding),
 
+            contentImageView.topAnchor.constraint(equalTo: textContentLabel.bottomAnchor, constant: commonPadding),
+            contentImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor),
+            contentImageView.trailingAnchor.constraint(equalTo: commonView.trailingAnchor),
+            contentImageView.bottomAnchor.constraint(equalTo: commonView.bottomAnchor),
+            contentImageViewHeightAnchor
         ])
     }
 
@@ -152,21 +171,7 @@ class PostListCell: UITableViewCell {
     func configure(with model: PostList.ViewModel.Post) {
         nameAuthorLabel.text = model.author.name
         textContentLabel.text = model.text
-
-        if let image = model.image {
-            commonView.addSubview(contentImageView)
-            NSLayoutConstraint.activate([
-                contentImageView.topAnchor.constraint(equalTo: textContentLabel.bottomAnchor, constant: commonPadding),
-                contentImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor),
-                contentImageView.trailingAnchor.constraint(equalTo: commonView.trailingAnchor),
-                contentImageView.bottomAnchor.constraint(equalTo: commonView.bottomAnchor),
-                contentImageView.heightAnchor.constraint(equalToConstant: 100)
-            ])
-        } else {
-            contentImageView.removeFromSuperview()
-        }
-
-        layoutIfNeeded()
+        contentImageViewHeightAnchor.constant = CGFloat(model.image?.height ?? 0)
     }
 
     func setAvatar(_ image: UIImage?) {
@@ -178,6 +183,7 @@ class PostListCell: UITableViewCell {
     func setContent(_ image: UIImage?) {
         DispatchQueue.main.async {
             self.contentImageView.image = image
+            self.contentImageView.setNeedsDisplay()
         }
     }
 }

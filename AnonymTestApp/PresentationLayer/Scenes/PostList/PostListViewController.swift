@@ -180,7 +180,6 @@ extension PostListViewController {
         disableAnimationActivity()
 
         self.viewModel = viewModel
-        self.viewModel?.isLoading = false
 
         if viewModel.posts.count == 0 {
             tableView.backgroundView = labelBackgroundTable
@@ -244,13 +243,18 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
 
-        if let url = post.image?.url {
+        if let image = post.image?.contentImage {
+            cell.setContent(image)
+        } else if let url = post.image?.url {
             DispatchQueue.global(qos: .userInitiated).async {
                 self.interactor?.getImage(by: url) { image in
+                    self.viewModel?.posts[indexPath.row].image?.contentImage = image
                     cell.setContent(image)
                 }
             }
         }
+
+        cell.layoutSubviews()
 
         return cell
     }
@@ -260,10 +264,12 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
         return
         if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=
                 scrollView.contentSize.height) &&
-                !viewModel.isLastPage &&
+            !viewModel.isLastPage &&
+            !viewModel.isLoading &&
             tableView.tableFooterView?.isHidden == true {
-            tableView.tableFooterView?.isHidden = false
 
+            tableView.tableFooterView?.isHidden = false
+            self.viewModel?.isLoading = true
             getPostList(false)
         }
     }
