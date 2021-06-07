@@ -12,10 +12,13 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Drawing Constants
 
-    let avatarImageWidthAnchor: CGFloat = 30
+    let avatarImageWidthAnchor: CGFloat = 28
     let commonPadding: CGFloat = 12
     let nameAuthorLabelFontSize: CGFloat = 14
     let commonViewRadius: CGFloat = 12
+    let dividerViewHeight: CGFloat = 3
+    let dividerViewWidth: CGFloat = 30
+    let dividerViewRadius: CGFloat = 2
 
     // MARK: - Views
 
@@ -49,6 +52,15 @@ class PostListCell: UITableViewCell {
         return label
     }()
 
+    private lazy var dividerView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = dividerViewRadius
+        view.backgroundColor = .systemBlue
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        return view
+    }()
+
     // MARK: - Setup
 
     override func prepareForReuse() {
@@ -77,8 +89,9 @@ class PostListCell: UITableViewCell {
         backgroundColor = .clear
 
         addSubview(commonView)
-        // addSubview(nameAuthorLabel)
-        // addSubview(avatarAuthorImageView)
+        commonView.addSubview(avatarAuthorImageView)
+        commonView.addSubview(nameAuthorLabel)
+        commonView.addSubview(dividerView)
 
         setupLayout()
     }
@@ -89,17 +102,21 @@ class PostListCell: UITableViewCell {
             commonView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
             commonView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -commonPadding),
             commonView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -commonPadding),
-            commonView.heightAnchor.constraint(equalToConstant: 100)
+            commonView.heightAnchor.constraint(equalToConstant: 100),
 
-//            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
-//            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
-//            avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
-//            avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
-//            avatarAuthorImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding),
-//
-//            nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
-//            nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
-//            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
+            avatarAuthorImageView.topAnchor.constraint(equalTo: commonView.topAnchor, constant: commonPadding),
+            avatarAuthorImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
+            avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+            avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+
+            dividerView.topAnchor.constraint(equalTo: avatarAuthorImageView.bottomAnchor, constant: commonPadding),
+            dividerView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
+            dividerView.heightAnchor.constraint(equalToConstant: dividerViewHeight),
+            dividerView.widthAnchor.constraint(equalToConstant: dividerViewWidth),
+
+            nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
+            nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
+            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
         ])
     }
 
@@ -107,6 +124,7 @@ class PostListCell: UITableViewCell {
 
     func configure(with model: PostList.ViewModel.Post) {
         nameAuthorLabel.text = model.author.name
+
     }
 
     func setAvatar(_ image: UIImage?) {

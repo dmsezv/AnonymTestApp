@@ -22,6 +22,14 @@ enum PostList {
 
         struct Post {
             let author: Author
+            let text: String?
+            let image: ImageContent?
+        }
+
+        struct ImageContent {
+            var url: String
+            var height: CGFloat
+            var width: CGFloat
         }
 
         struct Author {
