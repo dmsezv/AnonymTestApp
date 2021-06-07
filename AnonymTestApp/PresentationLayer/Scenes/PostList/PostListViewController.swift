@@ -150,7 +150,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
             tableView.topAnchor.constraint(equalTo: titleViewNavBar.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: safeView.bottomAnchor)
         ])
     }
 
@@ -193,9 +193,12 @@ extension PostListViewController {
     func displayError(_ message: String) {
         disableAnimationActivity()
 
-        viewModel?.isLoading = false
-
-        let alert = UIAlertController.errorAlert(message)
+        let alert = UIAlertController(title: "Error",
+                                      message: "Please, try later",
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.viewModel?.isLoading = false
+        }))
         present(alert, animated: true, completion: nil)
     }
 
@@ -253,8 +256,6 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
             }
         }
-
-        cell.layoutSubviews()
 
         return cell
     }
