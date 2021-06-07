@@ -12,8 +12,9 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Drawing Constants
 
-    let avatarImageWidthAnchor: CGFloat = 70
+    let avatarImageWidthAnchor: CGFloat = 30
     let commonPadding: CGFloat = 10
+    let nameAuthorLabelFontSize: CGFloat = 14
 
     // MARK: - Views
 
@@ -30,7 +31,7 @@ class PostListCell: UITableViewCell {
 
     private lazy var nameAuthorLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 15)
+        label.font = .boldSystemFont(ofSize: nameAuthorLabelFontSize)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
 
@@ -75,11 +76,12 @@ class PostListCell: UITableViewCell {
             avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
             avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
             avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+            avatarAuthorImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding),
 
-            nameAuthorLabel.topAnchor.constraint(equalTo: avatarAuthorImageView.bottomAnchor, constant: commonPadding),
-            nameAuthorLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
-            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding),
-            nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding)
+            nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
+            nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
+            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
+            // nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding)
         ])
     }
 
