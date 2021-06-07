@@ -261,7 +261,7 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let viewModel = viewModel else { return }
-        return
+
         if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=
                 scrollView.contentSize.height) &&
             !viewModel.isLastPage &&

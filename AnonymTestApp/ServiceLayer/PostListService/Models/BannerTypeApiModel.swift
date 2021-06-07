@@ -13,4 +13,5 @@ enum BannerTypeApiModel: String, Codable {
     case tags = "TAGS"
     case text = "TEXT"
     case video = "VIDEO"
+    case audio = "AUDIO"
 }
