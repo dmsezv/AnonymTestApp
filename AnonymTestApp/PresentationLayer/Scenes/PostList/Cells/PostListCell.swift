@@ -13,10 +13,21 @@ class PostListCell: UITableViewCell {
     // MARK: - Drawing Constants
 
     let avatarImageWidthAnchor: CGFloat = 30
-    let commonPadding: CGFloat = 10
+    let commonPadding: CGFloat = 12
     let nameAuthorLabelFontSize: CGFloat = 14
+    let commonViewRadius: CGFloat = 12
 
     // MARK: - Views
+
+    private lazy var commonView: UIView = {
+        let view = UIView()
+        view.clipsToBounds = true
+        view.layer.cornerRadius = commonViewRadius
+        view.translatesAutoresizingMaskIntoConstraints = false
+
+        view.backgroundColor = .systemBackground
+        return view
+    }()
 
     private lazy var avatarAuthorImageView: UIImageView = {
         let imageView = UIImageView()
@@ -63,25 +74,32 @@ class PostListCell: UITableViewCell {
 
     private func setupView() {
         selectionStyle = .none
+        backgroundColor = .clear
 
-        addSubview(nameAuthorLabel)
-        addSubview(avatarAuthorImageView)
+        addSubview(commonView)
+        // addSubview(nameAuthorLabel)
+        // addSubview(avatarAuthorImageView)
 
         setupLayout()
     }
 
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
-            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
-            avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
-            avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
-            avatarAuthorImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding),
+            commonView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
+            commonView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
+            commonView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -commonPadding),
+            commonView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -commonPadding),
+            commonView.heightAnchor.constraint(equalToConstant: 100)
 
-            nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
-            nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
-            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
-            // nameAuthorLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding)
+//            avatarAuthorImageView.topAnchor.constraint(equalTo: topAnchor, constant: commonPadding),
+//            avatarAuthorImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: commonPadding),
+//            avatarAuthorImageView.widthAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+//            avatarAuthorImageView.heightAnchor.constraint(equalToConstant: avatarImageWidthAnchor),
+//            avatarAuthorImageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: commonPadding),
+//
+//            nameAuthorLabel.centerYAnchor.constraint(equalTo: avatarAuthorImageView.centerYAnchor),
+//            nameAuthorLabel.leadingAnchor.constraint(equalTo: avatarAuthorImageView.trailingAnchor, constant: commonPadding),
+//            nameAuthorLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: commonPadding)
         ])
     }
 

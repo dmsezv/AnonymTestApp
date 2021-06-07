@@ -90,6 +90,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
         tableView.register(PostListCell.self, forCellReuseIdentifier: PostListCell.identifier)
         tableView.backgroundView = activityIndicator
         tableView.refreshControl = refreshControl
+        tableView.backgroundColor = .lightGray.withAlphaComponent(0.65)
 
         let activityIndicator = UIActivityIndicatorView(style: .medium)
         activityIndicator.hidesWhenStopped = true
@@ -146,7 +147,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
             tableView.topAnchor.constraint(equalTo: titleViewNavBar.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: safeView.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeView.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: safeView.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
