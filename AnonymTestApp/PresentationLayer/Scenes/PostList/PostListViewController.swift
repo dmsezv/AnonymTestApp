@@ -18,7 +18,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
     // MARK: - Drawing Constants
 
-    let estimatedRowHeight: CGFloat = 44
+    let estimatedRowHeight: CGFloat = 200
     let navBarHeight: CGFloat = 44
     let commonPadding: CGFloat = 10
     let mainAlpha: CGFloat = 0.85
@@ -231,6 +231,14 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
                 self.interactor?.getImage(by: url) { image in
                     self.viewModel?.posts[indexPath.row].author.photoImage = image
                     cell.setAvatar(image)
+                }
+            }
+        }
+
+        if let url = post.image?.url {
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.interactor?.getImage(by: url) { image in
+                    cell.setContent(image)
                 }
             }
         }

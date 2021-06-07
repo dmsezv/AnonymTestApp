@@ -27,9 +27,9 @@ enum PostList {
         }
 
         struct ImageContent {
-            let url: String
-            let height: CGFloat
-            let width: CGFloat
+            let url: String?
+            let height: Int?
+            let width: Int?
             var contentImage: UIImage?
         }
 

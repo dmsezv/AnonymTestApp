@@ -20,11 +20,14 @@ class PostListPresenter: PostListPresentationLogic {
             var postsViewModel: [ViewModel.Post] = []
             for post in postList {
                 let authorVM = fillViewModel(from: post.author)
-                let text = post.contents?.first(where: { $0.type == .text })?.data?.value
+                let textVM = post.contents?.first(where: { $0.type == .text })?.data?.value
+                let image = post.contents?.first(where: { $0.type == .image })?.data?.extraSmall
+                let imageVM = fillViewModel(from: image)
+
                 postsViewModel
                     .append(ViewModel.Post(author: authorVM,
-                                           text: text,
-                                           image: nil))
+                                           text: textVM,
+                                           image: imageVM))
             }
             let viewModel = ViewModel(posts: postsViewModel,
                                       isLastPage: response.postListModel?.cursor == nil,
@@ -43,5 +46,11 @@ class PostListPresenter: PostListPresentationLogic {
         ViewModel.Author(id: author?.id,
                          name: author?.name,
                          photoUrl: author?.photo?.data?.extraSmall?.url)
+    }
+
+    private func fillViewModel(from image: ExtraLargeApiModel?) -> ViewModel.ImageContent {
+        ViewModel.ImageContent(url: image?.url,
+                               height: image?.size?.height,
+                               width: image?.size?.width)
     }
 }
