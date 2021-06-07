@@ -21,7 +21,7 @@ class PostListPresenter: PostListPresentationLogic {
             for post in postList {
                 let authorVM = fillViewModel(from: post.author)
                 let textVM = post.contents?.first(where: { $0.type == .text })?.data?.value
-                let image = post.contents?.first(where: { $0.type == .image })?.data?.extraSmall
+                let image = post.contents?.first(where: { $0.type == .image })?.data?.medium
                 let imageVM = fillViewModel(from: image)
 
                 postsViewModel

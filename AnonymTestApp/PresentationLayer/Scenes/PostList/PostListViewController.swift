@@ -23,6 +23,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
     let commonPadding: CGFloat = 10
     let mainAlpha: CGFloat = 0.85
     let footerActivityIndicatorHeight: CGFloat = 50
+    let navBarColor: UIColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
 
     // MARK: - Object Lifestyle
 
@@ -63,9 +64,11 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
     private lazy var segmentControl: UISegmentedControl = {
         let segmentControl = UISegmentedControl(items: [
             "Most Popular",
-            "Most Commented"
+            "Most Commented",
+            "Created At"
         ])
         segmentControl.selectedSegmentIndex = 0
+        segmentControl.addTarget(self, action: #selector(refreshTable), for: .valueChanged)
         segmentControl.translatesAutoresizingMaskIntoConstraints = false
 
         return segmentControl
@@ -73,7 +76,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
     private lazy var titleViewNavBar: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(red: 0.969, green: 0.969, blue: 0.969, alpha: 1.0)
+        view.backgroundColor = navBarColor
         view.addSubview(segmentControl)
         view.translatesAutoresizingMaskIntoConstraints = false
 
@@ -166,7 +169,7 @@ class PostListViewController: UIViewController, PostListDisplayLogic {
 
 extension PostListViewController {
     func getPostList(_ needRefresh: Bool = true) {
-        interactor?.getPostList(needRefresh: needRefresh)
+        interactor?.getPostList(selectedIndex: segmentControl.selectedSegmentIndex, needRefresh: needRefresh)
     }
 }
 
@@ -178,6 +181,12 @@ extension PostListViewController {
 
         self.viewModel = viewModel
         self.viewModel?.isLoading = false
+
+        if viewModel.posts.count == 0 {
+            tableView.backgroundView = labelBackgroundTable
+        } else {
+            tableView.backgroundView = activityIndicator
+        }
 
         tableView.reloadData()
     }
@@ -248,7 +257,7 @@ extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         guard let viewModel = viewModel else { return }
-
+        return
         if ((scrollView.contentOffset.y + scrollView.frame.size.height) >=
                 scrollView.contentSize.height) &&
                 !viewModel.isLastPage &&

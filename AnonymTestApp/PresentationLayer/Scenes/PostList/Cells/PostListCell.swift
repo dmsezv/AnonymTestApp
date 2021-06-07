@@ -115,7 +115,6 @@ class PostListCell: UITableViewCell {
         commonView.addSubview(nameAuthorLabel)
         commonView.addSubview(dividerView)
         commonView.addSubview(textContentLabel)
-        commonView.addSubview(contentImageView)
 
         setupLayout()
     }
@@ -143,12 +142,7 @@ class PostListCell: UITableViewCell {
 
             textContentLabel.topAnchor.constraint(equalTo: dividerView.bottomAnchor, constant: commonPadding),
             textContentLabel.leadingAnchor.constraint(equalTo: commonView.leadingAnchor, constant: commonPadding),
-            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding),
-
-            contentImageView.topAnchor.constraint(equalTo: textContentLabel.bottomAnchor, constant: commonPadding),
-            contentImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor),
-            contentImageView.trailingAnchor.constraint(equalTo: commonView.trailingAnchor),
-            contentImageView.bottomAnchor.constraint(equalTo: commonView.bottomAnchor)
+            textContentLabel.trailingAnchor.constraint(equalTo: commonView.trailingAnchor, constant: -commonPadding)
 
         ])
     }
@@ -158,8 +152,19 @@ class PostListCell: UITableViewCell {
     func configure(with model: PostList.ViewModel.Post) {
         nameAuthorLabel.text = model.author.name
         textContentLabel.text = model.text
-        
-        contentImageView.heightAnchor.constraint(equalToConstant: CGFloat(model.image?.height ?? 0)).isActive = true
+
+        if let image = model.image {
+            commonView.addSubview(contentImageView)
+            NSLayoutConstraint.activate([
+                contentImageView.topAnchor.constraint(equalTo: textContentLabel.bottomAnchor, constant: commonPadding),
+                contentImageView.leadingAnchor.constraint(equalTo: commonView.leadingAnchor),
+                contentImageView.trailingAnchor.constraint(equalTo: commonView.trailingAnchor),
+                contentImageView.bottomAnchor.constraint(equalTo: commonView.bottomAnchor),
+                contentImageView.heightAnchor.constraint(equalToConstant: 100)
+            ])
+        } else {
+            contentImageView.removeFromSuperview()
+        }
 
         layoutIfNeeded()
     }

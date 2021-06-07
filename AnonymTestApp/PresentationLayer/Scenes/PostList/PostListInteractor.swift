@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PostListBusinessLogic {
-    func getPostList(needRefresh: Bool)
+    func getPostList(selectedIndex: Int, needRefresh: Bool)
     func getImage(by id: String, _ complete: @escaping(UIImage?) -> Void)
 }
 
@@ -26,12 +26,12 @@ class PostListInteractor: PostListBusinessLogic, PostListDataStore {
         self.postListService = postListService
     }
 
-    func getPostList(needRefresh: Bool) {
+    func getPostList(selectedIndex: Int, needRefresh: Bool) {
         if needRefresh {
             postListModel = nil
         }
 
-        postListService.getPostList(cursor: postListModel?.cursor) { result in
+        postListService.getPostList(indexOrderBy: selectedIndex, cursor: postListModel?.cursor) { result in
             switch result {
             case .success(let model):
                 if let _ = self.postListModel?.items,
