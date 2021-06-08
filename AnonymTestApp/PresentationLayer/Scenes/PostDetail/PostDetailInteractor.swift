@@ -40,7 +40,7 @@ class PostDetailInteractor: PostDetailBusinessLogic, PostDetailDataStore {
         }
 
         if let image = postModel
-            .contents?.first(where: { $0.type == .image })?.data?.large,
+            .contents?.first(where: { $0.type == .image })?.data?.medium,
            let imageUrl = image.url {
             postListService.getImageData(by: imageUrl) { data in
                 response.imageData = data
@@ -48,6 +48,8 @@ class PostDetailInteractor: PostDetailBusinessLogic, PostDetailDataStore {
 
                 self.presenter?.presentPostDetails(response: response)
             }
+        } else {
+            self.presenter?.presentPostDetails(response: response)
         }
     }
 }

@@ -39,10 +39,11 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
         return scrollView
     }()
 
-    private lazy var stackView: UIStackView = {
+    private lazy var scrollViewContainer: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.spacing = 20
+        stackView.distribution = .equalSpacing
         stackView.translatesAutoresizingMaskIntoConstraints = false
 
         return stackView
@@ -53,6 +54,7 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
         label.font = .systemFont(ofSize: commonLabelFontSize)
         label.textColor = .black
         label.numberOfLines = 0
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
 
         return label
@@ -61,7 +63,7 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
     private lazy var contentImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -84,6 +86,8 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
         activityIndicator.startAnimating()
 
         view.addSubview(activityIndicator)
+        view.addSubview(scrollView)
+        scrollView.addSubview(scrollViewContainer)
 
         setupLayout()
     }
@@ -93,16 +97,34 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
 
         NSLayoutConstraint.activate([
             activityIndicator.centerXAnchor.constraint(equalTo: safeView.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: safeView.centerYAnchor)
+            activityIndicator.centerYAnchor.constraint(equalTo: safeView.centerYAnchor),
+
+            scrollView.topAnchor.constraint(equalTo: safeView.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: safeView.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: safeView.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: safeView.bottomAnchor),
+
+            scrollViewContainer.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            scrollViewContainer.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            scrollViewContainer.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            scrollViewContainer.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            scrollViewContainer.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
         ])
     }
 
     private func addContent(_ text: String) {
         textContentLabel.text = text
+
+        scrollViewContainer.addArrangedSubview(textContentLabel)
     }
 
-    private func addContent(_ image: UIImage, height: Int, width: Int) {
+    private func addContent(_ image: UIImage, height: Int) {
         contentImageView.image = image
+        let ratio = image.size.width / image.size.height
+        contentImageView.widthAnchor
+            .constraint(equalTo: contentImageView.heightAnchor, multiplier: ratio).isActive = true
+
+        scrollViewContainer.addArrangedSubview(contentImageView)
     }
 }
 
@@ -112,12 +134,14 @@ extension PostDetailViewController {
     func displayPostDetail(viewModel: PostDetail.ViewModel) {
         disableAnimationActivity()
 
-        if let text = viewModel.text {
-            addContent(text)
+        if let imageContent = viewModel.imageContent,
+           let image = imageContent.image,
+           let height = imageContent.imageHeight {
+            addContent(image, height: height)
         }
 
-        if let image = viewModel.imageContent {
-
+        if let text = viewModel.text {
+            addContent(text)
         }
     }
 
@@ -133,10 +157,4 @@ extension PostDetailViewController {
             activityIndicator.stopAnimating()
         }
     }
-}
-
-// MARK: - Business Logic
-
-extension PostDetailViewController {
-
 }
