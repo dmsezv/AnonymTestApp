@@ -220,6 +220,12 @@ extension PostListViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let viewModel = viewModel else { return }
+
+        router?.routeToPostDetail()
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.posts.count ?? 0
     }

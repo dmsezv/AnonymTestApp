@@ -11,6 +11,7 @@ import UIKit
 protocol PresentationAssemblyProtocol {
     func defaultNavigationController(rootViewController: UIViewController) -> UINavigationController
     func postListViewController() -> PostListViewController
+    func postDetailViewController() -> PostDetailViewController
 }
 
 class PresentationAssembly: PresentationAssemblyProtocol {
@@ -38,6 +39,22 @@ class PresentationAssembly: PresentationAssemblyProtocol {
         router.dataStore = interactor
 
         viewController.title = "Post List"
+
+        return viewController
+    }
+
+    func postDetailViewController() -> PostDetailViewController {
+        let viewController = PostDetailViewController()
+        let interactor = PostDetailInteractor()
+        let router = PostDetailRouter()
+        let presenter = PostDetailPresenter()
+
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
 
         return viewController
     }

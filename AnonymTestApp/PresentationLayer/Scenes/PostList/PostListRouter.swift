@@ -8,7 +8,7 @@
 import UIKit
 
 @objc protocol PostListRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToPostDetail()
 }
 
 protocol PostListDataPassing {
@@ -27,20 +27,10 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     // MARK: - Routing
 
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
-    // {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    // }
+    func routeToPostDetail() {
+        let destenationVC = presenterAssembly.postDetailViewController()
+        viewController?.show(destenationVC, sender: nil)
+    }
 
     // MARK: - Navigation
 
