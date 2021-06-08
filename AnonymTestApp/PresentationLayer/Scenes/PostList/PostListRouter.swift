@@ -8,7 +8,7 @@
 import UIKit
 
 @objc protocol PostListRoutingLogic {
-    func routeToPostDetail()
+    func routeToPostDetail(by identifier: String)
 }
 
 protocol PostListDataPassing {
@@ -27,7 +27,7 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     // MARK: - Routing
 
-    func routeToPostDetail() {
+    func routeToPostDetail(by identifier: String) {
         let destenationVC = presenterAssembly.postDetailViewController()
         viewController?.show(destenationVC, sender: nil)
     }

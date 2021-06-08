@@ -221,9 +221,12 @@ extension PostListViewController {
 
 extension PostListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let viewModel = viewModel else { return }
-
-        router?.routeToPostDetail()
+        if let cell = tableView.cellForRow(at: indexPath) as? PostListCell {
+            UIView.animateScale(cell.commonView) {
+                guard let identif = self.viewModel?.posts[indexPath.row].identifier else { return }
+                self.router?.routeToPostDetail(by: identif)
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

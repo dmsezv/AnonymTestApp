@@ -46,6 +46,7 @@
 		4DE17522266EEDCC00252942 /* PostDetailModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1751C266EEDCC00252942 /* PostDetailModels.swift */; };
 		4DE17523266EEDCC00252942 /* PostDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1751D266EEDCC00252942 /* PostDetailViewController.swift */; };
 		4DE17524266EEDCC00252942 /* PostDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE1751E266EEDCC00252942 /* PostDetailInteractor.swift */; };
+		4DE17526266EF51400252942 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DE17525266EF51400252942 /* UIView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +91,7 @@
 		4DE1751C266EEDCC00252942 /* PostDetailModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailModels.swift; sourceTree = "<group>"; };
 		4DE1751D266EEDCC00252942 /* PostDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewController.swift; sourceTree = "<group>"; };
 		4DE1751E266EEDCC00252942 /* PostDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailInteractor.swift; sourceTree = "<group>"; };
+		4DE17525266EF51400252942 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				4D6A5A6F266D72F9003F7CB8 /* UIAlertController+Extension.swift */,
+				4DE17525266EF51400252942 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				4DE17522266EEDCC00252942 /* PostDetailModels.swift in Sources */,
 				4D6A5A3C266D4A29003F7CB8 /* APIResponse.swift in Sources */,
 				4D6A5A68266D5181003F7CB8 /* PostListModels.swift in Sources */,
+				4DE17526266EF51400252942 /* UIView+Extension.swift in Sources */,
 				4D6A5A44266D4C37003F7CB8 /* PostTypeApiModel.swift in Sources */,
 				4D6A5A69266D5181003F7CB8 /* PostListViewController.swift in Sources */,
 				4DE17523266EEDCC00252942 /* PostDetailViewController.swift in Sources */,

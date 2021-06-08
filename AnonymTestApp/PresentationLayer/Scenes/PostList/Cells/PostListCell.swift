@@ -22,7 +22,7 @@ class PostListCell: UITableViewCell {
 
     // MARK: - Views
 
-    private lazy var commonView: UIView = {
+    lazy var commonView: UIView = {
         let view = UIView()
         view.clipsToBounds = true
         view.layer.cornerRadius = commonViewRadius
@@ -75,7 +75,6 @@ class PostListCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.backgroundColor = .white
         imageView.contentMode = .scaleAspectFill
-        imageView.autoresizingMask = .flexibleHeight
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
 

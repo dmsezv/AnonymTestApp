@@ -8,16 +8,15 @@
 import UIKit
 
 protocol PostDetailPresentationLogic {
-  func presentSomething(response: PostDetail.Response)
+    func presentSomething(response: PostDetail.Response)
 }
 
 class PostDetailPresenter: PostDetailPresentationLogic {
-  weak var viewController: PostDetailDisplayLogic?
+    weak var viewController: PostDetailDisplayLogic?
 
-  // MARK: Do something
+    // MARK: Do something
 
-  func presentSomething(response: PostDetail.Response) {
-    let viewModel = PostDetail.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    func presentSomething(response: PostDetail.Response) {
+
+    }
 }
