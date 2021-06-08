@@ -74,6 +74,8 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
         super.viewDidLoad()
 
         setupView()
+
+        interactor?.getPostDetail()
     }
 
     private func setupView() {

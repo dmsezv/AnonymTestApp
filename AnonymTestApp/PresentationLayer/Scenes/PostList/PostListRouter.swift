@@ -29,7 +29,11 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     func routeToPostDetail(by identifier: String) {
         let destenationVC = presenterAssembly.postDetailViewController()
-        viewController?.show(destenationVC, sender: nil)
+        if let dataStore = dataStore,
+           var destinationDataStore = destenationVC.router?.dataStore {
+            passDataFrom(dataStore, where: identifier, to: &destinationDataStore)
+            viewController?.show(destenationVC, sender: nil)
+        }
     }
 
     // MARK: - Navigation
@@ -41,8 +45,9 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     // MARK: - Passing data
 
-    // func passDataToSomewhere(source: PostListDataStore, destination: inout SomewhereDataStore)
-    // {
-    //  destination.name = source.name
-    // }
+     func passDataFrom(_ source: PostListDataStore,
+                     where identifier: String,
+                     to destination: inout PostDetailDataStore) {
+        destination.postModel = source.postListModel?.items?.first(where: { $0.id == identifier })
+     }
 }

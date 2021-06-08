@@ -8,19 +8,18 @@
 import UIKit
 
 protocol PostDetailBusinessLogic {
-    func doSomething(request: PostDetail.Request)
+    func getPostDetail()
 }
 
 protocol PostDetailDataStore {
-    // var name: String { get set }
+    var postModel: PostApiModel? { get set }
 }
 
 class PostDetailInteractor: PostDetailBusinessLogic, PostDetailDataStore {
     var presenter: PostDetailPresentationLogic?
+    var postModel: PostApiModel?
 
-    // MARK: Do something
-
-    func doSomething(request: PostDetail.Request) {
+    func getPostDetail() {
         let response = PostDetail.Response()
         presenter?.presentSomething(response: response)
     }
