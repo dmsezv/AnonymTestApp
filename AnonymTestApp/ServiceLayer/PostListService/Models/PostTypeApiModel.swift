@@ -7,8 +7,15 @@
 
 import Foundation
 
-enum PostTypeApiModel: String, Codable {
+enum PostTypeApiModel: String {
     case plain = "PLAIN"
     case plainCover = "PLAIN_COVER"
     case video = "VIDEO"
+    case unknown
+}
+
+extension PostTypeApiModel: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try PostTypeApiModel(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+    }
 }

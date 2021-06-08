@@ -7,11 +7,18 @@
 
 import Foundation
 
-enum BannerTypeApiModel: String, Codable {
+enum BannerTypeApiModel: String {
     case image = "IMAGE"
     case imageGIF = "IMAGE_GIF"
     case tags = "TAGS"
     case text = "TEXT"
     case video = "VIDEO"
     case audio = "AUDIO"
+    case unknown
+}
+
+extension BannerTypeApiModel: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try BannerTypeApiModel(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unknown
+    }
 }
