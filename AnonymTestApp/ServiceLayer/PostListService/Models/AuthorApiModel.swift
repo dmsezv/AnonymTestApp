@@ -1,5 +1,5 @@
 //
-//  AuthorModel.swift
+//  AuthorApiModel.swift
 //  AnonymTestApp
 //
 //  Created by Dmitrii Zverev on 06.06.2021.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct AuthorModel: Codable {
+struct AuthorApiModel: Codable {
     var id: String?
     var url: String?
     var name: String?
-    var photo: PhotoModel?
+    var photo: PhotoApiModel?
 }

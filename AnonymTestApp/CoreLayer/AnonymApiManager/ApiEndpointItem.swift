@@ -36,11 +36,11 @@ extension ApiEndpointItem: ApiEndpointItemProtocol {
         switch self {
         case .getPosts(let pageSize, let nextPageCursor, let orderBy):
             var urlPath = "posts?first=\(pageSize)"
-            if let nextPageCursor = nextPageCursor {
-                urlPath += "&after=\(nextPageCursor)"
-            }
             if let orderBy = orderBy {
                 urlPath += "&orderBy=\(orderBy)"
+            }
+            if let nextPageCursor = nextPageCursor {
+                urlPath += "&after=\(nextPageCursor)"
             }
             return urlPath
         }
