@@ -8,7 +8,7 @@
 import UIKit
 
 protocol PostDetailDisplayLogic: AnyObject {
-    func displayPostDetail()
+    func displayPostDetail(viewModel: PostDetail.ViewModel)
     func displayError(_ message: String)
 }
 
@@ -96,14 +96,29 @@ class PostDetailViewController: UIViewController, PostDetailDisplayLogic {
             activityIndicator.centerYAnchor.constraint(equalTo: safeView.centerYAnchor)
         ])
     }
+
+    private func addContent(_ text: String) {
+        textContentLabel.text = text
+    }
+
+    private func addContent(_ image: UIImage, height: Int, width: Int) {
+        contentImageView.image = image
+    }
 }
 
 // MARK: - Display Logic
 
 extension PostDetailViewController {
-    func displayPostDetail() {
+    func displayPostDetail(viewModel: PostDetail.ViewModel) {
         disableAnimationActivity()
 
+        if let text = viewModel.text {
+            addContent(text)
+        }
+
+        if let image = viewModel.imageContent {
+
+        }
     }
 
     func displayError(_ message: String) {

@@ -45,7 +45,7 @@ class PresentationAssembly: PresentationAssemblyProtocol {
 
     func postDetailViewController() -> PostDetailViewController {
         let viewController = PostDetailViewController()
-        let interactor = PostDetailInteractor()
+        let interactor = PostDetailInteractor(postListService: serviceAssembly.postListService())
         let router = PostDetailRouter()
         let presenter = PostDetailPresenter()
 
