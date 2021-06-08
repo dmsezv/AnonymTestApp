@@ -21,6 +21,7 @@ enum PostList {
         var isLoading: Bool = true
 
         struct Post {
+            let identifier: String
             var author: Author
             let text: String?
             var image: ImageContent?

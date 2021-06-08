@@ -8,7 +8,7 @@
 import UIKit
 
 @objc protocol PostListRoutingLogic {
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
+    func routeToPostDetail(by identifier: String)
 }
 
 protocol PostListDataPassing {
@@ -27,20 +27,14 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     // MARK: - Routing
 
-    // func routeToSomewhere(segue: UIStoryboardSegue?)
-    // {
-    //  if let segue = segue {
-    //    let destinationVC = segue.destination as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //  } else {
-    //    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-    //    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SomewhereViewController") as! SomewhereViewController
-    //    var destinationDS = destinationVC.router!.dataStore!
-    //    passDataToSomewhere(source: dataStore!, destination: &destinationDS)
-    //    navigateToSomewhere(source: viewController!, destination: destinationVC)
-    //  }
-    // }
+    func routeToPostDetail(by identifier: String) {
+        let destenationVC = presenterAssembly.postDetailViewController()
+        if let dataStore = dataStore,
+           var destinationDataStore = destenationVC.router?.dataStore {
+            passDataFrom(dataStore, where: identifier, to: &destinationDataStore)
+            viewController?.show(destenationVC, sender: nil)
+        }
+    }
 
     // MARK: - Navigation
 
@@ -51,8 +45,9 @@ class PostListRouter: PostListRoutingLogic, PostListDataPassing {
 
     // MARK: - Passing data
 
-    // func passDataToSomewhere(source: PostListDataStore, destination: inout SomewhereDataStore)
-    // {
-    //  destination.name = source.name
-    // }
+     func passDataFrom(_ source: PostListDataStore,
+                     where identifier: String,
+                     to destination: inout PostDetailDataStore) {
+        destination.postModel = source.postListModel?.items?.first(where: { $0.id == identifier })
+     }
 }

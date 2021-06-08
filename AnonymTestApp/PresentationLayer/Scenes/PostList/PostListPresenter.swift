@@ -19,15 +19,18 @@ class PostListPresenter: PostListPresentationLogic {
         if let postList = response.postListModel?.items, !response.isError {
             var postsViewModel: [ViewModel.Post] = []
             for post in postList {
-                let authorVM = fillViewModel(from: post.author)
-                let textVM = post.contents?.first(where: { $0.type == .text })?.data?.value
-                let image = post.contents?.first(where: { $0.type == .image })?.data?.small
-                let imageVM = fillViewModel(from: image)
+                if let identifier = post.id {
+                    let authorVM = fillViewModel(from: post.author)
+                    let textVM = post.contents?.first(where: { $0.type == .text })?.data?.value
+                    let image = post.contents?.first(where: { $0.type == .image })?.data?.small
+                    let imageVM = fillViewModel(from: image)
 
-                postsViewModel
-                    .append(ViewModel.Post(author: authorVM,
-                                           text: textVM,
-                                           image: imageVM))
+                    postsViewModel
+                        .append(ViewModel.Post(identifier: identifier,
+                                               author: authorVM,
+                                               text: textVM,
+                                               image: imageVM))
+                }
             }
             let viewModel = ViewModel(posts: postsViewModel,
                                       isLastPage: response.postListModel?.cursor == nil,
